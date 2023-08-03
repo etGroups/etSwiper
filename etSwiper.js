@@ -6,6 +6,7 @@ export class etSwiper {
 		this.slideWidth = 0;
 		this.translateX = 0;
 		this.breakpointKeys = Object.keys(options.breakpoints).map(key => parseInt(key));
+		this.nextSlideInterval;
 
 		for (const swiper of document.querySelectorAll(selector)) {
 			swiper.querySelector('.swiper-slide').classList.add('swiper-slide-active');
@@ -89,7 +90,7 @@ export class etSwiper {
 			this.handleSwipe(swiper);
 		}
 
-		setInterval(() => {
+		this.nextSlideInterval = setInterval(() => {
 			this.nextSlide();
 		}, this.options.autoplay.delay);
 	}
@@ -116,6 +117,11 @@ export class etSwiper {
 
 		for (const event of ['touchmove', 'mousemove']) {
 			swiper.addEventListener(event, function (e) {
+				clearInterval(this.nextSlideInterval);
+				this.nextSlideInterval = setInterval(() => {
+					this.nextSlide();
+				}, this.options.autoplay.delay);
+				
 				if (isSwipe) {
 					touchList.push(parseFloat(e.pageX ?? e.touches[0].pageX));
 
@@ -137,7 +143,7 @@ export class etSwiper {
 					swiper.querySelector('.swiper-pagination-bullet-active').classList.remove('swiper-pagination-bullet-active');
 					bullets[newSlideActive].classList.add('swiper-pagination-bullet-active');
 				}
-			}, {passive: true});
+			}.bind(this), {passive: true});
 		}
 
 		for (const event of ['touchend', 'mouseup']) {
