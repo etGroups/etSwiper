@@ -1,0 +1,27 @@
+{
+  "name": "@etgroups/etswiper",
+  "version": "1.0.0",
+  "author": "etGroups",
+  "license": "MIT",
+  "description": "Simple slider",
+  "main": "etSwiper.js",
+  "type": "module",
+  "files": [
+    "etSwiper.css"
+  ],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/etGroups/etSwiper.git"
+  },
+  "keywords": [
+    "etSwiper",
+    "slider"
+  ],
+  "bugs": {
+    "url": "https://github.com/etGroups/etSwiper/issues"
+  },
+  "homepage": "https://github.com/etGroups/etSwiper#readme"
+}
