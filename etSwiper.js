@@ -1,4 +1,4 @@
-export class etSwiper {
+export default class etSwiper {
 	constructor(selector, options) {
 		this.swipers = [];
 		this.options = options;
